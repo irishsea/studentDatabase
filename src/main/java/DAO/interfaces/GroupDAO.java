@@ -6,16 +6,16 @@ import models.Student;
 import java.util.List;
 
 public interface GroupDAO {
-    public Group findById(String id);
+    Group findById(int id);
 
-    public void save(Group group);
+    void save(Group group);
 
-    public void update(Group group);
+    void update(Group group);
 
-    public void delete(Group group);
+    void delete(Group group);
 
-//    public List<Student> findAllStudents();
-//
-//    public List<Group> findAllGroups();
+    List<Student> findAllStudents();
+
+    List<Group> findAllGroups();
 
 }

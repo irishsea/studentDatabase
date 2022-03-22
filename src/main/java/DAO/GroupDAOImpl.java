@@ -5,13 +5,19 @@ import models.Group;
 import models.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import utils.HibernateSessionFactoryUtil;
+//import utils.HibernateSessionFactoryUtil;
+import utils.HibernateUtil;
 
 import java.util.List;
 
 public class GroupDAOImpl implements GroupDAO {
-    public Group findById(String id) {
-        return getSession().get(Group.class, id);
+    public Group findById(int id) {
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        Group result = session.get(Group.class, id);
+        tr.commit();
+        session.close();
+        return result;
     }
 
     public void save(Group group) {
@@ -38,17 +44,25 @@ public class GroupDAOImpl implements GroupDAO {
         session.close();
     }
 
-//    public List<Student> findAllStudents() {
-//        List<Student> students = getSession().createQuery("SELECT FROM student", Student.class).list();
-//        return students;
-//    }
-//
-//    public List<Group> findAllGroups() {
-//        List<Group> groups = getSession().createQuery("SELECT FROM group", Group.class).list();
-//        return groups;
-//    }
+    public List<Student> findAllStudents() {
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        List<Student> students = session.createQuery("from Student", Student.class).list();
+        tr.commit();
+        session.close();
+        return students;
+    }
+
+    public List<Group> findAllGroups() {
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        List<Group> groups = session.createQuery("from Group", Group.class).list();
+        tr.commit();
+        session.close();
+        return groups;
+    }
 
     private Session getSession() {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        return HibernateUtil.getCurrentSession();
     }
 }

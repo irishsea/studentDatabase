@@ -3,13 +3,13 @@ package models;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "student")
-//@Table (name = "student")
+@Entity
+@Table (name = "student")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -23,9 +23,9 @@ public class Student {
 //    @Column(name = "birth_date")
 //    private Date birthDate;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "group_id")
-//    private Group group;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     public Student(){
 
@@ -42,11 +42,11 @@ public class Student {
 //        this.birthDate = birthDate;;
 //    }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -82,9 +82,9 @@ public class Student {
 //        this.birthDate = birthDate;
 //    }
 
-//    public void setGroup(Group group) {
-//        this.group = group;
-//    }
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
 
 //    @Override
@@ -98,4 +98,11 @@ public class Student {
 //                '}';
 //    }
 
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                '}';
+    }
 }

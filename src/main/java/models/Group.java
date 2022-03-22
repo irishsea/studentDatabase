@@ -10,7 +10,7 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column (name = "faculty")
     private String faculty;
@@ -18,32 +18,32 @@ public class Group {
     @Column (name = "name")
     private String name;
 
-//    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Student> students;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> students;
 
     public Group(){}
 
     public Group(String faculty, String name){
         this.faculty = faculty;
         this.name = name;
-        //students = new ArrayList<Student>();
+        students = new ArrayList<>();
     }
 
-//    public void addStudent(Student student){
-//        student.setGroup(this);
-//        students.add(student);
-//    }
+    public void addStudent(Student student){
+        student.setGroup(this);
+        students.add(student);
+    }
 
-//    public void removeStudent(Student student){
-//        students.remove(student);
-//    }
+    public void removeStudent(Student student) {
+        students.remove(student);
+    }
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -63,20 +63,19 @@ public class Group {
         this.faculty = faculty;
     }
 
-//    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
+    public List<Student> getStudents() {
+        return students;
+    }
 
-    //    @Override
-    //    public String toString() {
-    //        return "Group{" +
-    //                "number='" + number + '\'' +
-    //                ", faculty='" + faculty + '\'' +
-    //                ", students=" + students +
-    //                '}';
-    //    }
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+        @Override
+        public String toString() {
+            return "Group{" +
+                    "faculty='" + faculty + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
 }

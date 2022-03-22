@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface StudentDAO {
 
-    public Student findById(long id);
+    Student findById(int id);
 
-    public void save(Student student);
+    void save(Student student);
 
-    public void update(Student student);
+    void update(Student student);
 
-    public void delete(Student student);
+    void delete(Student student);
 
 }

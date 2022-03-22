@@ -13,7 +13,7 @@ public class StudentService {
     public StudentService() {
     }
 
-    public Student findStudent(long id) {
+    public Student findStudent(int id) {
         return studentDAO.findById(id);
     }
 

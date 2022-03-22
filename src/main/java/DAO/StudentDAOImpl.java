@@ -4,11 +4,17 @@ import DAO.interfaces.StudentDAO;
 import models.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import utils.HibernateSessionFactoryUtil;
+import utils.HibernateUtil;
+//import utils.HibernateSessionFactoryUtil;
 
 public class StudentDAOImpl implements StudentDAO {
-    public Student findById(long id) {
-        return getSession().get(Student.class, id);
+    public Student findById(int id) {
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        Student result = session.get(Student.class, id);
+        tr.commit();
+        session.close();
+        return result;
     }
 
     public void save(Student student) {
@@ -36,6 +42,6 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     private Session getSession() {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        return HibernateUtil.getCurrentSession();
     }
 }

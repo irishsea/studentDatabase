@@ -12,7 +12,7 @@ public class GroupService {
     public GroupService() {
     }
 
-    public Group findGroup(String id) {
+    public Group findGroup(int id) {
         return groupDAO.findById(id);
     }
 
@@ -28,11 +28,11 @@ public class GroupService {
         groupDAO.delete(group);
     }
 
-//    public List<Group> findAllGroups() {
-//        return groupDAO.findAllGroups();
-//    }
-//
-//    public List<Student> findAllStudents() {
-//        return groupDAO.findAllStudents();
-//    }
+    public List<Group> findAllGroups() {
+        return groupDAO.findAllGroups();
+    }
+
+    public List<Student> findAllStudents() {
+        return groupDAO.findAllStudents();
+    }
 }
