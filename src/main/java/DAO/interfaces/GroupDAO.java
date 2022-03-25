@@ -14,6 +14,8 @@ public interface GroupDAO {
 
     void delete(Group group);
 
+    void deleteAllGroups();
+
     List<Student> findAllStudents();
 
     List<Group> findAllGroups();

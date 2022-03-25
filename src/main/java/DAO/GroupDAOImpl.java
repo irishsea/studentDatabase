@@ -44,6 +44,15 @@ public class GroupDAOImpl implements GroupDAO {
         session.close();
     }
 
+    @Override
+    public void deleteAllGroups() {
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        session.createQuery("delete from Group g", Group.class).executeUpdate();
+        tr.commit();
+        session.close();
+    }
+
     public List<Student> findAllStudents() {
         Session session = getSession();
         Transaction tr = session.beginTransaction();

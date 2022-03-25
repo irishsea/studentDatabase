@@ -29,4 +29,17 @@ public class StudentService {
         studentDAO.delete(student);
     }
 
+    public void deleteAllStudents(){
+        studentDAO.deleteAllStudents();
+    }
+
+    public List<Student> filterByFirstName(String firstName) {
+        return studentDAO.filterByFirstName(firstName);
+    }
+
+    public List<Student> filterByGroup(String groupName) {
+        return studentDAO.filterByGroup(groupName);
+    }
+
+
 }

@@ -28,6 +28,10 @@ public class GroupService {
         groupDAO.delete(group);
     }
 
+    public void deleteAllGroups() {
+        groupDAO.deleteAllGroups();
+    }
+
     public List<Group> findAllGroups() {
         return groupDAO.findAllGroups();
     }

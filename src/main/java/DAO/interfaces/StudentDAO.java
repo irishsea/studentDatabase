@@ -15,4 +15,9 @@ public interface StudentDAO {
 
     void delete(Student student);
 
+    void deleteAllStudents();
+
+    List<Student> filterByFirstName(String firstName);
+
+    List<Student> filterByGroup(String groupName);
 }
