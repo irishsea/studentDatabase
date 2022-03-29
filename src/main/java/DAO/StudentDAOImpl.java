@@ -48,7 +48,7 @@ public class StudentDAOImpl implements StudentDAO {
     public void deleteAllStudents() {
         Session session = getSession();
         Transaction tr = session.beginTransaction();
-        session.createQuery("delete from Student s", Student.class).executeUpdate();
+        session.createQuery("delete from Student s").executeUpdate();
         tr.commit();
         session.close();
     }
@@ -72,7 +72,6 @@ public class StudentDAOImpl implements StudentDAO {
         Query<Student> query = session.createQuery
                 ("select s from Student s " +
                                 "inner join s.group g " +
-//                                "where  s.group = g.id " +
                                 "where g.name like :groupName"
                         , Student.class);
         query.setParameter("groupName", "%" + groupName + "%");

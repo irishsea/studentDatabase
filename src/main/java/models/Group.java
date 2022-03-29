@@ -29,6 +29,13 @@ public class Group {
         students = new ArrayList<>();
     }
 
+    public Group(int id, String faculty, String name){
+        this.id = id;
+        this.faculty = faculty;
+        this.name = name;
+        students = new ArrayList<>();
+    }
+
     public void addStudent(Student student){
         student.setGroup(this);
         students.add(student);
@@ -41,10 +48,6 @@ public class Group {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

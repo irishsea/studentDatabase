@@ -13,19 +13,23 @@ public class Main {
         StudentService studentService = new StudentService();
         Group group1 = new Group("Automation", "8К71");
         groupService.saveGroup(group1);
+        groupService.deleteAllGroups();
 //
-//            Student student1 = new Student("Sucrose");
+//        Student student1 = new Student(1, "Sucrose");
 //            studentService.updateStudent(student1);
-//            studentService.saveStudent(student1);
+//        studentService.saveStudent(student1);
 
-        Student student1 = new Student("Olya");
-        student1.setGroup(group1);
-        group1.addStudent(student1);
-//
-        Student student2 = new Student("Andrew");
-        student2.setGroup(group1);
-        group1.addStudent(student2);
-        groupService.updateGroup(group1);
+//        Student student2 = new Student(2, "Sucrose2");
+//        studentService.saveStudent(student2);
+
+//        Student student1 = new Student("Olya");
+//        student1.setGroup(group1);
+//        group1.addStudent(student1);
+////
+//        Student student2 = new Student("Andrew");
+//        student2.setGroup(group1);
+//        group1.addStudent(student2);
+//        groupService.updateGroup(group1);
 
 //        List<Group> gotGroups = groupService.findAllGroups();
 //        for (Group g : gotGroups) {
@@ -46,10 +50,14 @@ public class Main {
 //            System.out.println(s);
 //        }
 
-        List<Student> gotStudent = studentService.filterByGroup("К");
-        for (Student s : gotStudent) {
-            System.out.println(s);
-        }
+//        List<Student> gotStudent = studentService.filterByGroup("К");
+//        for (Student s : gotStudent) {
+//            System.out.println(s);
+//        }
+//        groupService.deleteAllGroups();
+//        studentService.deleteAllStudents();
+
+//        System.out.println(studentService.findStudent(2));
     }
 }
 

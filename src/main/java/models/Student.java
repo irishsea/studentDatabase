@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table (name = "student")
-public class Student implements Comparable<Student>{
+public class Student{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +35,12 @@ public class Student implements Comparable<Student>{
         this.firstName = firstName;
     }
 
+    public Student(int id, String firstName) {
+        this.id = id;
+        this.firstName = firstName;
+    }
+
+
 //    public Student(String firstName, String lastName, String patronymic, Date birthDate) {
 //        this.firstName = firstName;
 //        this.lastName = lastName;
@@ -44,10 +50,6 @@ public class Student implements Comparable<Student>{
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -86,6 +88,9 @@ public class Student implements Comparable<Student>{
         this.group = group;
     }
 
+    public Group getGroup() {
+        return group;
+    }
 
 //    @Override
 //    public String toString() {
@@ -106,8 +111,4 @@ public class Student implements Comparable<Student>{
                 '}';
     }
 
-    @Override
-    public int compareTo(Student o) {
-        return 0;
-    }
 }
