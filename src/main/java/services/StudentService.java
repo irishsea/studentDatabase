@@ -1,14 +1,12 @@
 package services;
 
-import DAO.GroupDAOImpl;
-import DAO.StudentDAOImpl;
-import models.Group;
+import DAO.StudentDAO;
 import models.Student;
 
 import java.util.List;
 
 public class StudentService {
-    StudentDAOImpl studentDAO = new StudentDAOImpl();
+    StudentDAO studentDAO = new StudentDAO();
 
     public StudentService() {
     }

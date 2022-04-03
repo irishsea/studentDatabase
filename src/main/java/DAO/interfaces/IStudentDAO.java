@@ -1,11 +1,10 @@
 package DAO.interfaces;
 
-import models.Group;
 import models.Student;
 
 import java.util.List;
 
-public interface StudentDAO {
+public interface IStudentDAO {
 
     Student findById(int id);
 

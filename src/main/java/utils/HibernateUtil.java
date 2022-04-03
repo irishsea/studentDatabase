@@ -1,6 +1,7 @@
 package utils;
 
 import models.Group;
+import models.Role;
 import models.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,6 +38,7 @@ public class HibernateUtil {
 
         metadataSources.addAnnotatedClass(Student.class);
         metadataSources.addAnnotatedClass(Group.class);
+        metadataSources.addAnnotatedClass(Role.class);
 
         Metadata metadata = metadataSources.buildMetadata();
 

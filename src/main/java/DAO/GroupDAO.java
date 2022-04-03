@@ -1,16 +1,15 @@
 package DAO;
 
-import DAO.interfaces.GroupDAO;
+import DAO.interfaces.IGroupDAO;
 import models.Group;
 import models.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-//import utils.HibernateSessionFactoryUtil;
 import utils.HibernateUtil;
 
 import java.util.List;
 
-public class GroupDAOImpl implements GroupDAO {
+public class GroupDAO implements IGroupDAO {
     public Group findById(int id) {
         Session session = getSession();
         Transaction tr = session.beginTransaction();

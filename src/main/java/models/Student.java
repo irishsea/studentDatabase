@@ -1,11 +1,12 @@
 package models;
 
+
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Entity
-@Table (name = "student")
-public class Student{
+@Table(name = "student")
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,14 @@ public class Student{
     @JoinColumn(name = "group_id")
     private Group group;
 
-    public Student(){
+    //    @ManyToMany
+//    @JoinTable(name = "student_role_link",
+//            joinColumns = @JoinColumn(name = "student_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(mappedBy = "students")
+    private Set<Role> roles = new HashSet<>();
+
+    public Student() {
 
     }
 
@@ -92,6 +100,30 @@ public class Student{
         return group;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Role role, boolean needLinkOtherSide) {
+        this.roles.add(role);
+
+        if (needLinkOtherSide) {
+            role.addStudent(this, false);
+        }
+    }
+
+    public void removeRole(Role role, boolean needLinkOtherSide) {
+        this.roles.remove(role);
+
+        if (needLinkOtherSide) {
+            role.removeStudent(this, false);
+        }
+    }
+
 //    @Override
 //    public String toString() {
 //        return "Student{" +
@@ -111,4 +143,16 @@ public class Student{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return id == student.id && firstName.equals(student.firstName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName);
+    }
 }

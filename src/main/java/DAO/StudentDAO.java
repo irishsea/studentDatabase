@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.interfaces.StudentDAO;
+import DAO.interfaces.IStudentDAO;
 import models.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,9 +8,8 @@ import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
 import java.util.List;
-//import utils.HibernateSessionFactoryUtil;
 
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAO implements IStudentDAO {
     public Student findById(int id) {
         Session session = getSession();
         Transaction tr = session.beginTransaction();
@@ -75,6 +74,18 @@ public class StudentDAOImpl implements StudentDAO {
                                 "where g.name like :groupName"
                         , Student.class);
         query.setParameter("groupName", "%" + groupName + "%");
+        List<Student> students = query.list();
+        tr.commit();
+        session.close();
+        return students;
+    }
+
+    public List<Student> getTheBestStudents(){
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        Query<Student> query = session.createQuery
+                ("select s from "
+                        , Student.class);
         List<Student> students = query.list();
         tr.commit();
         session.close();
