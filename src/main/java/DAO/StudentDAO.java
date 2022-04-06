@@ -80,11 +80,15 @@ public class StudentDAO implements IStudentDAO {
         return students;
     }
 
-    public List<Student> getTheBestStudents(){
+    @Override
+    public List<Student> getFellows() {
         Session session = getSession();
         Transaction tr = session.beginTransaction();
         Query<Student> query = session.createQuery
-                ("select s from "
+                ("select s from Student s " +
+                                "join s.roles " +
+                                "group by s.id " +
+                                "having count(s) >= 2"
                         , Student.class);
         List<Student> students = query.list();
         tr.commit();

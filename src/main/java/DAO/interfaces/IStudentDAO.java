@@ -19,4 +19,6 @@ public interface IStudentDAO {
     List<Student> filterByFirstName(String firstName);
 
     List<Student> filterByGroup(String groupName);
+
+    List<Student> getFellows();
 }

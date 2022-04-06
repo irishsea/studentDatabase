@@ -39,5 +39,9 @@ public class StudentService {
         return studentDAO.filterByGroup(groupName);
     }
 
+    public List<Student> getFellows() {
+        return studentDAO.getFellows();
+    }
+
 
 }

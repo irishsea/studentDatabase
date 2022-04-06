@@ -97,6 +97,11 @@ public class Main {
 
         studentService.updateStudent(student1);
         studentService.updateStudent(student2);
+
+        List<Student> gotStudent = studentService.getFellows();
+        for (Student s : gotStudent) {
+            System.out.println(s);
+        }
     }
 }
 

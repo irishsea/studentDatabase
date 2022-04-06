@@ -1,6 +1,7 @@
 package services;
 
 import models.Group;
+import models.Role;
 import models.Student;
 import org.junit.jupiter.api.*;
 
@@ -12,6 +13,7 @@ class StudentServiceTest {
 
     static GroupService groupService = new GroupService();
     static StudentService studentService = new StudentService();
+    static RoleService roleService = new RoleService();
 
     static Group group1 = new Group("Automation", "8T71");
     static Group group2 = new Group("Design", "8D71");
@@ -28,10 +30,15 @@ class StudentServiceTest {
     static Student student9 = new Student("Tartaglia");
     static Student student10 = new Student("Kaeya");
 
+    Role role1 = new Role("excellent");
+    Role role2 = new Role("cultural member");
+    Role role3 = new Role("profession member");
+
     @BeforeAll
     static void setUp() {
         studentService.deleteAllStudents();
         groupService.deleteAllGroups();
+        roleService.deleteAllRoles();
     }
 
 
@@ -39,6 +46,7 @@ class StudentServiceTest {
     public void cleanAll() {
         studentService.deleteAllStudents();
         groupService.deleteAllGroups();
+        roleService.deleteAllRoles();
     }
 
     @Test
@@ -98,5 +106,34 @@ class StudentServiceTest {
         studentService.saveStudent(student7);
         studentService.deleteAllStudents();
         assertEquals(0, groupService.findAllStudents().size());
+    }
+
+    @Test
+    void getFellowsTest() {
+        roleService.saveRole(role1);
+        roleService.saveRole(role2);
+        roleService.saveRole(role3);
+
+        student8.addRole(role1, true);
+        student8.addRole(role2, true);
+        student8.addRole(role3, true);
+
+        student9.addRole(role1, true);
+        student9.addRole(role2, true);
+
+        student10.addRole(role3, true);
+
+        roleService.updateRole(role1);
+        roleService.updateRole(role2);
+        roleService.updateRole(role3);
+
+        studentService.updateStudent(student8);
+        studentService.updateStudent(student9);
+        studentService.updateStudent(student10);
+
+        List<Student> studentList = studentService.getFellows();
+
+        assertEquals(student8.getFirstName(), studentList.get(0).getFirstName());
+        assertEquals(student9.getFirstName(), studentList.get(1).getFirstName());
     }
 }

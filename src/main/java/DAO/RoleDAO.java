@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
+import java.util.List;
+
 public class RoleDAO implements IRoleDAO {
 
     @Override
@@ -17,6 +19,16 @@ public class RoleDAO implements IRoleDAO {
         tr.commit();
         session.close();
         return result;
+    }
+
+    @Override
+    public List<Role> findAllRoles(){
+        Session session = getSession();
+        Transaction tr = session.beginTransaction();
+        List<Role> roles = session.createQuery("from Role", Role.class).list();
+        tr.commit();
+        session.close();
+        return roles;
     }
 
     @Override
