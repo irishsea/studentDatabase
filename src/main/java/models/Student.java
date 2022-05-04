@@ -28,10 +28,6 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    //    @ManyToMany
-//    @JoinTable(name = "student_role_link",
-//            joinColumns = @JoinColumn(name = "student_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
     @ManyToMany(mappedBy = "students")
     private Set<Role> roles = new HashSet<>();
 
