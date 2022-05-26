@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.interfaces.IRoleDAO;
+import services.interfaces.IRoleDAO;
 import models.Role;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

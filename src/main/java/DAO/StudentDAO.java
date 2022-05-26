@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.interfaces.IStudentDAO;
+import services.interfaces.IStudentDAO;
 import models.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.interfaces.IGroupDAO;
+import services.interfaces.IGroupDAO;
 import models.Group;
 import models.Student;
 import org.hibernate.Session;

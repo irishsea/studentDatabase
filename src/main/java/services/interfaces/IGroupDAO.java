@@ -1,4 +1,4 @@
-package DAO.interfaces;
+package services.interfaces;
 
 import models.Group;
 import models.Student;
