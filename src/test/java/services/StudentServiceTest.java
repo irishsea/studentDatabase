@@ -24,8 +24,8 @@ class StudentServiceTest {
     static Student student3 = new Student("Klee");
     static Student student4 = new Student("Itto");
     static Student student5 = new Student("Morax");
-    static Student student6 = new Student(1, "Fischl");
-    static Student student7 = new Student(2, "Beidou");
+    static Student student6 = new Student( "Fischl");
+    static Student student7 = new Student("Beidou");
     static Student student8 = new Student("Bennett");
     static Student student9 = new Student("Tartaglia");
     static Student student10 = new Student("Kaeya");
@@ -132,8 +132,10 @@ class StudentServiceTest {
         studentService.updateStudent(student10);
 
         List<Student> studentList = studentService.getFellows();
+        for(Student s: studentList){
+            System.out.println(s.getFirstName());
+        }
+        assertEquals(2, studentList.size());
 
-        assertEquals(student8.getFirstName(), studentList.get(0).getFirstName());
-        assertEquals(student9.getFirstName(), studentList.get(1).getFirstName());
     }
 }
