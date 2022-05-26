@@ -136,6 +136,8 @@ class StudentServiceTest {
             System.out.println(s.getFirstName());
         }
         assertEquals(2, studentList.size());
+        assertTrue(studentList.contains(student8));
+        assertTrue(studentList.contains(student9));
 
     }
 }
